@@ -9,7 +9,6 @@ class Solution {
             {
                 left++;
             }
-
             while(left < right && !Character.isLetterOrDigit(s.charAt(right)))
             {
                 right--;
