@@ -4,29 +4,21 @@ class Solution {
         {
             return false;
         }
+        int [] count = new int[26];
 
-        Map <Character, Integer> map = new HashMap<>();
-
-        for(char c : s.toCharArray())
+        for(int i = 0; i < s.length(); i++)
         {
-            map.put(c, map.getOrDefault(c, 0) + 1);
+            count[s.charAt(i) - 'a']++;
+            count[t.charAt(i) - 'a']--;
         }
 
-        for(char c : t.toCharArray())
+        for(int c : count)
         {
-            if(!map.containsKey(c))
+            if(c != 0)
             {
                 return false;
             }
-
-            map.put(c, map.get(c) - 1);
-
-            if(map.get(c) == 0)
-            {
-                map.remove(c);
-            }
         }
-
-        return map.isEmpty();   
+        return true;
     }
 }
