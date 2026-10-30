@@ -12,7 +12,7 @@ The table below is generated from the folders by `scripts/make_index.py`.
 
 | # | Problem | Difficulty | Topics | Language | Last solved |
 | ---: | --- | --- | --- | --- | --- |
-| 1 | [Two Sum](https://leetcode.com/problems/two-sum/) | Easy | Array, Hash Table | [Java](0001-two-sum/) | 2026-10-30 |
+| 1 | [Two Sum](https://leetcode.com/problems/two-sum/) | Easy | Array, Hash Table | [Java, Python](0001-two-sum/) | 2026-10-30 |
 | 3 | [Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/) | Medium | Hash Table, String, Sliding Window | [Java](0003-longest-substring-without-repeating-characters/) | 2026-10-30 |
 | 11 | [Container With Most Water](https://leetcode.com/problems/container-with-most-water/) | Medium | Array, Two Pointers, Greedy | [Java](0011-container-with-most-water/) | 2026-10-30 |
 | 26 | [Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/) | Easy | Array, Two Pointers | [Java](0026-remove-duplicates-from-sorted-array/) | 2026-10-30 |
