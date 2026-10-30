@@ -50,9 +50,21 @@ def request(path, payload=None):
             with urllib.request.urlopen(req, timeout=30) as resp:
                 return json.load(resp)
         except urllib.error.HTTPError as e:
-            if e.code in (401, 403):
-                sys.exit(f"LeetCode rejected the request ({e.code}). "
-                         "Your LEETCODE_SESSION cookie is probably expired - refresh the secret.")
+            if e.code == 401:
+                sys.exit("LeetCode rejected the request (401). Your LEETCODE_SESSION "
+                         "cookie has expired - refresh the repository secret.")
+            if e.code == 403:
+                # Either an expired cookie or LeetCode's bot protection blocking this
+                # runner's IP. The latter is often transient, so back off and retry.
+                if attempt == 4:
+                    sys.exit(
+                        "LeetCode kept returning 403. Either your LEETCODE_SESSION "
+                        "cookie is stale (grab a fresh one from your browser and update "
+                        "the secret), or LeetCode is temporarily blocking this GitHub "
+                        "runner - in which case a later run will go through on its own."
+                    )
+                time.sleep(20 * 2 ** attempt)
+                continue
             if e.code == 429 or e.code >= 500:
                 time.sleep(5 * 2 ** attempt)
                 continue

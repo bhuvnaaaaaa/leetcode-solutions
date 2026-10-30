@@ -34,11 +34,15 @@ jobs:
           LEETCODE_CSRF_TOKEN: ${{ secrets.LEETCODE_CSRF_TOKEN }}
         run: python scripts/sync.py
 
+      # These run even when the sync step fails, so that submissions already
+      # committed before the failure still get pushed instead of being lost.
       - name: Update solutions index
+        if: always()
         run: |
           python scripts/make_index.py
           git add README.md
           git diff --cached --quiet || git commit -m "Update solutions index"
 
       - name: Push
+        if: always()
         run: git push
