@@ -2,7 +2,10 @@ name: Sync LeetCode
 
 on:
   schedule:
-    - cron: "*/30 * * * *"   # every 30 minutes (GitHub may delay scheduled runs)
+    # Offset off :00 and :30 on purpose - GitHub's scheduler is most congested on
+    # the hour and half hour, and drops runs there. Scheduled runs are best-effort
+    # either way, so use the Actions tab to force a sync when you want one now.
+    - cron: "13,43 * * * *"
   workflow_dispatch:         # lets you run it manually from the Actions tab
 
 permissions:
