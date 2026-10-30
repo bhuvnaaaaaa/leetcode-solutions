@@ -34,5 +34,11 @@ jobs:
           LEETCODE_CSRF_TOKEN: ${{ secrets.LEETCODE_CSRF_TOKEN }}
         run: python scripts/sync.py
 
+      - name: Update solutions index
+        run: |
+          python scripts/make_index.py
+          git add README.md
+          git diff --cached --quiet || git commit -m "Update solutions index"
+
       - name: Push
         run: git push
